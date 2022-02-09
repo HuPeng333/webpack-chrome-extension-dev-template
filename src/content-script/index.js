@@ -1,5 +1,3 @@
-import util from './util/test'
+import myModule from './module'
 import ('./index.css')
-setInterval(() => {
-  console.log(util.msg)
-}, 1000)
+myModule()

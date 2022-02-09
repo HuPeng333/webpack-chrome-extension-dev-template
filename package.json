@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config ./config/webpack.config.js",
+    "dev": "cross-env NODE_ENV=development webpack --watch --config ./config/webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "chrome-types": "^0.1.86",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.6.0",
     "mini-css-extract-plugin": "^2.5.3",
     "webpack": "^5.68.0",

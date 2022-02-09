@@ -41,6 +41,15 @@ npx webpack-chrome-extension-dev-cli
 npm i
 ```
 
+## 启动
+```shell
+# 以开发模式启动，自动热更新
+npm run dev
+
+# 以生产模式下启动
+npm run build
+```
+
 
 
 

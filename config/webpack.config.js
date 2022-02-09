@@ -9,9 +9,12 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: "content-script/index.js",
-    libraryTarget: "this",
+    libraryTarget: "window",
     clean: true,
     publicPath: "./"
+  },
+  watchOptions: {
+    ignored: /node_modules/
   },
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
