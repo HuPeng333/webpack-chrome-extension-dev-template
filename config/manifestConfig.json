@@ -1,0 +1,12 @@
+{
+
+  "permissions": [
+    "Cookie"
+  ],
+  "content_scripts_matches": [
+    "<all_urls>"
+  ],
+  "options_ui": {
+    "open_in_tab": true
+  }
+}
