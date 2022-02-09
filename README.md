@@ -31,10 +31,18 @@
 
 ## 安装
 
+### 使用npx安装(推荐)
+```shell
+npx webpack-chrome-extension-dev-cli
+```
+### 从RELEASE中下载
 从右侧RELEASE中下载相关模板然后安装依赖
 ```shell
 npm i
 ```
+
+
+
 
 ## 使用说明
 
