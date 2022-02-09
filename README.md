@@ -4,7 +4,7 @@
 
 ## 适用范围
 
-我们都知道，webpack仅能有一个入口文件, 如果拓展中有多个"content_script"，
+目前仅支持一个"content_script", 如果拓展中有多个"content_script"，
 例如如下所示的代码中就有两个"content_script"入口，那就不适合使用本模板！
 ```json
 {
@@ -31,7 +31,7 @@
 
 ## 安装
 
-克隆本项目后并安装依赖后即可开始使用
+从右侧RELEASE中下载相关模板然后安装依赖
 ```shell
 npm i
 ```
@@ -48,13 +48,16 @@ npm i
     ---|manifestConfig.json // 在该文件下为manifest.json添加额外配置
 -| src
     ---|content-script
-        ---|index.js  // content-script入口文件, 在此处开始构建拓展
-    ---|public // 该文件夹下的内容将会原封不动的打包
+        ---|index.js  // content-script入口文件, 在此处开始构建相关拓展
+    ---|public // 该文件夹下的内容将会原封不动的打包, 可以存放一些第三方库
     ---|popup // 该文件夹下的内容将会原封不动的打包
         ---|index.html // 在此处开始构建您的默认popup, 最终生成manifest.json会自动指向该文件
     ---|options // 配置页,该文件夹下的内容将会原封不动的打包
-        ---|index.html
+        ---|index.html // 在此处开始构建您的默认配置页, 最终生成manifest.json会自动指向该文件
 ```
+请严格按照模板的目录书写相关代码，否则manifest.json无法正常生成!
+
+在`content-script`内可以直接`import` css文件，最后所有的css将会被打包为一个文件！
 
 ### 打包
 使用如下命令打包
@@ -62,6 +65,7 @@ npm i
 npm run build
 ```
 打包完成后会将所有资源生成在`dist`文件夹下
+
 **项目结构**
 ```text
 -|content-script
@@ -69,6 +73,8 @@ npm run build
     ---|index.js // js资源, 所有的js都会被打包为同一个文件
 -|popup
     ---|index.html // popup入口文件
+-|options
+    ---|index.html // options入口文件
 -|public // public文件夹
 -|manifest.json // chrome拓展配置文件
 ```
