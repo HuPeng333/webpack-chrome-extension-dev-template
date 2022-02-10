@@ -2,33 +2,7 @@
 
 基于webpack，让你能够使用EsModules快速构建Chrome拓展，并为你自动生成manifest.json
 
-## 适用范围
-
-目前仅支持一个`content_script`, 如果拓展中有多个`content_script`
-
-如下所示的代码中就有两个`content_script`入口！后期可能会提供对多个`content_script`的入口支持
-```json
-{
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "lib/jquery.js"
-      ]
-    },
-    {
-      "matches": [
-        "https://*.github.com/*"
-      ],
-      "js" : [
-        "src/tool.js"
-      ]
-    }
-  ]
-}
-```
+**自`webpack-chrome-extension-dev-script`v0.1.0版本后，支持多个content-script入口打包!**
 
 ## 安装
 
@@ -42,11 +16,8 @@ npx webpack-chrome-extension-dev-cli ${project_name}
 npm i
 ```
 
-
 ---
-
 # 说明文档
-
 
 ## 如何开发
 
@@ -56,7 +27,11 @@ npm i
 ```text
 -| src
     ---|content-script
-        ---|index.js  // content-script入口文件, 在此处开始构建相关拓展
+        ---|module1
+            ---|index.js  // content-script入口文件, 在此处开始构建相关拓展
+        ---|module2
+            ---|index.js  // content-script入口文件, 在此处开始构建相关拓展
+        // ... 
         
     ---|public // 该文件夹下的内容将会原封不动的打包, 可以存放一些第三方库
     
@@ -71,7 +46,11 @@ npm i
 ```
 请严格按照模板的目录书写相关代码，否则manifest.json无法正常生成!
 
-在`content-script`内可以直接`import` css文件，最后所有的css将会被打包为一个文件！
+你可以在`content-script`文件夹下创建多个模块(一个文件夹代表一个模块)，
+但模块的入口文件名必须保证其名称为`index.js`, 关于如何配置`content-script`的`matches`属性, 请查阅
+[配置manifest.json](#manifest-config)
+
+在`content-script`内可以直接`import` css文件，最后所有的css将会被分模块打包为一个文件！
 
 ## 运行
 在开发模式下运行, **会自动开启热更新，不需要重复执行指令**
@@ -88,7 +67,7 @@ npm run build
 
 ## 配置
 
-### 配置manifest.json
+<h3 id="manifest-config">配置manifest.json</h3>
 你可以在`manifestConfig.json`配置相关的拓展配置，最终它会被自动合并进`manifest.json`。
 
 你不需要手动声明`name`,`version`,`description`属性, 这些属性会自动从`package.json`中读取
@@ -97,11 +76,23 @@ npm run build
 请使用`content_scripts_matches`代替
 ```json
 {
-  "content_scripts_matches": [
-    "<all_urls>"
-  ]
+  
+  // ...other config
+  
+  "content_scripts_matches": {
+    "moduleName": [
+      "https://*.github.com"
+    ],
+    "moduleName2": [
+      "<all_urls>"
+    ]
+  }
 }
 ```
+请确保`content_scripts_matches`下的属性名与`content-script`文件夹下的模块名称一一对应!
+
+如果不配置，默认为`<all_urls>`
+
 ### 配置webpack.config.js
 
 由于webpack的配置文件被隐藏了，有些时候我们可能需要添加一些额外支持(如TypeScript)

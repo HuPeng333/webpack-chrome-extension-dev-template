@@ -16,7 +16,7 @@
     "css-loader": "^6.6.0",
     "mini-css-extract-plugin": "^2.5.3",
     "webpack": "^5.68.0",
-    "webpack-chrome-extension-dev-script": "0.0.2"
+    "webpack-chrome-extension-dev-script": "^0.1.1"
   },
   "dependencies": {}
 }
