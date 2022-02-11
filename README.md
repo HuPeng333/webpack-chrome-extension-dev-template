@@ -1,5 +1,9 @@
 # webpack-chrome-extension-dev-template
 
+[English Version](https://github.com/HuPeng333/webpack-chrome-extension-dev-template/blob/master/README.en.md)
+
+[Github](https://github.com/HuPeng333/webpack-chrome-extension-dev-template)
+
 基于webpack，让你能够使用EsModules快速构建Chrome拓展，并为你自动生成manifest.json
 
 **自`webpack-chrome-extension-dev-script`v0.1.0版本后，支持多个content-script入口打包!**

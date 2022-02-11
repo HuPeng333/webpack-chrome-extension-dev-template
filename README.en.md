@@ -1,4 +1,7 @@
 # webpack-chrome-extension-dev-template
+[简体中文](https://github.com/HuPeng333/webpack-chrome-extension-dev-template/blob/master/README.md)
+
+[Github](https://github.com/HuPeng333/webpack-chrome-extension-dev-template)
 
 based on `webpack`, allow you to build `Chrome Extension` with `EsModules`, and auto generate `manifest.json` for you 
 
