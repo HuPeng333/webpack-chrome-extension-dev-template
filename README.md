@@ -76,9 +76,6 @@ npm run build
 请使用`content_scripts_matches`代替
 ```json
 {
-  
-  // ...other config
-  
   "content_scripts_matches": {
     "moduleName": [
       "https://*.github.com"
