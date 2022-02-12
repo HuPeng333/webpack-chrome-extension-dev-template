@@ -45,6 +45,9 @@ npm i
     ---|options // 配置页,该文件夹下的内容将会原封不动的打包
         ---|index.html // 在此处开始构建您的默认配置页, 最终生成manifest.json会自动指向该文件
         
+    ---|background
+        ---|index.js // 在这里构建 service workers, 可以使用EsModules
+        
 -|manifestConfig.json // 在该文件下为manifest.json添加额外配置
 -|webpack-config.js // webpack配置入口, 详见下方配置webpack.config.js
 ```

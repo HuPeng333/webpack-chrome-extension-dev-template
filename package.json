@@ -1,14 +1,17 @@
 {
   "name": "webpack-chrome-extension-dev-template",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-chrome-extension-dev-script dev",
-    "build": "webpack-chrome-extension-dev-script build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack-chrome-extension-dev-script build"
   },
-  "keywords": ["chrome extension", "webpack", "chrome"],
+  "keywords": [
+    "chrome extension",
+    "webpack",
+    "chrome"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -16,7 +19,7 @@
     "css-loader": "^6.6.0",
     "mini-css-extract-plugin": "^2.5.3",
     "webpack": "^5.68.0",
-    "webpack-chrome-extension-dev-script": "^0.1.3"
+    "webpack-chrome-extension-dev-script": "^0.1.4"
   },
   "dependencies": {}
 }

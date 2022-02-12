@@ -44,6 +44,9 @@ ___
     ---|options // the file in this folder will be intact moved to the output path
         ---|index.html // start build your config page here, the 'manifest.json' will auto point to it
         
+    ---|background
+        ---|index.js // build `service workers` here, you can use EsModules!
+        
 -|manifestConfig.json // add additional 'manifest.json' config here
 -|webpack-config.js // config the webpack, see 'Config the webpack.config.js' below
 ```

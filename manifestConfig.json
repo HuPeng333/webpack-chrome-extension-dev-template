@@ -1,7 +1,7 @@
 {
 
   "permissions": [
-    "Cookie"
+    "activeTab"
   ],
   "content_scripts_matches": {
     "testModule2": [
@@ -10,5 +10,8 @@
   },
   "options_ui": {
     "open_in_tab": true
+  },
+  "background": {
+    "type": "module"
   }
 }
