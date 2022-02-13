@@ -1,9 +1,8 @@
 import t from './t'
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({
-    "id": "sampleContextMenu",
-    "title": "Sample Context Menu",
-    "contexts": ["selection"]
-  });
-});
-console.log(t)
+import {launchHotUpdate} from 'webpack-chrome-extension-dev-script'
+
+console.log(SCRIPT_MODE)
+if (SCRIPT_MODE === 'development') {
+  launchHotUpdate()
+  console.log('do')
+}

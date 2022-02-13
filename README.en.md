@@ -60,7 +60,8 @@ see [Config the manifest.json](#manifest-config)
 > You can import `css` file in `content-script` modules!
 
 ## Run
-Run in `development` mode, it could auto hot update
+Run in `development` mode, it could auto hot update,but you may reload the extension in the browser! 
+To solve this problem, see [Browser hot update](#hot-update)
 ```shell
 npm run dev
 ```
@@ -111,4 +112,29 @@ module.exports = (webpackConfig) => {
 ```
 
 Please mark sure you return the `webpackConfig` object!
+
+<h3 id="hot-update">Browser hot update</h3>
+> It only can use in `webpack-chrome-extension-dev-script 0.2.0` or bigger
+
+Although in development mode, we can hot update the extension, but the browser couldn't reload
+our newly extension!
+
+In this situation, you have to reload the extension in your browser 'extension' page.
+
+To solve this problem, you can add this code in `background`(in `src/background/index.js`)
+
+```javascript
+import {launchHotUpdate} from 'webpack-chrome-extension-dev-script'
+
+if (SCRIPT_MODE === 'development') {
+  launchHotUpdate()
+}
+```
+
+Now, you modify your code in dev mode, and then use `f5` to refresh your browser, it will be auto reload!
+
+The `SCRIPT_MODE` is smiler to `process.env.NODE_ENV`
+
+> **Warn:** don use `process.env.NODE_ENV` to judge build mode! Because the extension, which is build with development mode in webpack, 
+can't run in browser! So the `process.env.NODE_ENV` always `production`!
 

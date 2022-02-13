@@ -1,12 +1,10 @@
 # webpack-chrome-extension-dev-template
 
-[English Version](https://github.com/HuPeng333/webpack-chrome-extension-dev-template/blob/master/README.en.md)
+[English Docs](https://github.com/HuPeng333/webpack-chrome-extension-dev-template/blob/master/README.en.md)
 
 [Github](https://github.com/HuPeng333/webpack-chrome-extension-dev-template)
 
-基于webpack，让你能够使用EsModules快速构建Chrome拓展，并为你自动生成manifest.json
-
-**自`webpack-chrome-extension-dev-script`v0.1.0版本后，支持多个content-script入口打包!**
+基于webpack，使用EsModules快速构建Chrome拓展! 并为你自动生成manifest.json!
 
 ## 安装
 
@@ -70,7 +68,7 @@ npm run build
 ```
 打包完成后会将所有资源生成在`dist`文件夹下, 使用浏览器加载`已经解压的拓展`即可使用
 
-> 有些时候浏览器并不会自动热更新你的拓展，你可能需要手动在浏览器内重新加载拓展
+> 有些时候浏览器并不会自动热更新你的拓展，你可能需要手动在浏览器内重新加载拓展, 为了解决该情况，请参考 [浏览器自动热更新](#hot-update)
 
 ## 配置
 
@@ -114,3 +112,25 @@ module.exports = (webpackConfig) => {
 ```
 
 `webpackConfig`是内部提前预定好的一些配置，你可以在此基础上添加额外配置，并最后将其返回。
+
+<h3 id="hot-update">浏览器自动热更新</h3>
+> webpack-chrome-extension-dev-script 0.2.0及以上版本可用
+
+尽管在开发模式下，我们可以热更新生成拓展，但浏览器并不会自动重新加载新打包的拓展!
+
+这个时候你需要手动去浏览器的拓展页面点击重新加载。
+
+为了解决这个问题，你可以在你的`background`(即`src/background/index.js`)中添加如下代码
+```javascript
+import {launchHotUpdate} from 'webpack-chrome-extension-dev-script'
+
+if (SCRIPT_MODE === 'development') {
+  launchHotUpdate()
+}
+```
+
+之后，在修改代码并打包后，浏览器也会同步更新，你只需要简单的按下`F5`刷新页面就可以看到效果！
+
+`SCRIPT_MODE`为内置的常量，作用与`process.env.NODE_ENV`相同。
+
+> **警告**: 你不能直接使用`process.env.NODE_ENV`去判断编译环境, 因为使用webpack在生产模式下打包后的拓展无法正常运行，因此process.env.NODE_ENV的值永远是 `production`
